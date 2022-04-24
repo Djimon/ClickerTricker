@@ -11,6 +11,7 @@ public class GroundController : MonoBehaviour
     private int iPoints = 0;
     private bool hasChild = false;
     public float fgrowthSpeed = 1f;
+    public int iGivePoints = 1;
 
     private bool isReady = false;
 
@@ -38,23 +39,20 @@ public class GroundController : MonoBehaviour
         }
     }
 
-    public void SetGrowthSpeed(float speed)
+    public void Initialize(float speed, int points)
     {
         fgrowthSpeed = speed;
         Debug.Log("growth speed set to "+speed);
-    }
-
-    public void GO()
-    {
-        Debug.Log("Start Spawning growables");
+        iGivePoints = points;
         isReady = true;
+        Debug.Log("Start Spawning growables");
     }
 
     public void SpawnNewChild()
     {
         var newGO = Instantiate(Growable, new Vector3(0, 0, 0), Quaternion.identity);
         newGO.transform.SetParent(this.transform);
-        newGO.GetComponent<GrowEntity>().Initialize(gameObject, fgrowthSpeed);
+        newGO.GetComponent<GrowEntity>().Initialize(gameObject, fgrowthSpeed, iGivePoints);
         newGO.transform.localPosition = new Vector3(0, 0.75f, 0);
         hasChild = true;
     }

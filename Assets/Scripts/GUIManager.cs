@@ -14,7 +14,6 @@ public class GUIManager : MonoBehaviour
 
     private int iglobalPoints = 0;
     private int iGrounds = 0;
-    private bool canLevelUp = false;
 
     private int iLevelUpPrice = 10;
 
@@ -40,7 +39,7 @@ public class GUIManager : MonoBehaviour
         TM_Points.text = "Anzahl Mana: " + iglobalPoints;
         GB = GameBoard.gameObject.GetComponent<GameBoard>();
         TM_LevelUp = LevelUpBtn.GetComponentInChildren<Text>();
-        TM_LevelUp.text = "Level+ (Price: " + iLevelUpPrice + ")";
+        TM_LevelUp.text = "Ground+ (Price: " + iLevelUpPrice + ")";
         GB.UpdatePlaces(iglobalPoints);;
         UpdatePoints();
         fNotifybaseHeight = NotifyPanel.transform.localPosition.y;
@@ -57,7 +56,7 @@ public class GUIManager : MonoBehaviour
         TM_Points.text = "Anzahl Mana: " + iglobalPoints;
         collect.Play();
         GB.UpdatePlaces(iglobalPoints);
-        if(canLevelUp && iglobalPoints < iLevelUpPrice)
+        if(iglobalPoints < iLevelUpPrice)
         {
             var c = TM_LevelUp.GetComponentInParent<Image>().color;
             TM_LevelUp.GetComponentInParent<Image>().color = new Color(c.r, c.g, c.b, 0.3f);
@@ -83,14 +82,13 @@ public class GUIManager : MonoBehaviour
 
     public void LevelUp()
     {
-        CheckLevelUp();
-        if (canLevelUp && iglobalPoints >= iLevelUpPrice)
+        //CheckLevelUp();
+        if (iglobalPoints >= iLevelUpPrice)
         {
             GB.IncreasePlaceLevel();
             UpdatePointsToGUI(-iLevelUpPrice);
-            canLevelUp = false;
             iLevelUpPrice *= 2;
-            TM_LevelUp.text = "Level+ (Price: " + iLevelUpPrice + ")";
+            TM_LevelUp.text = "Ground+ (Price: " + iLevelUpPrice + ")";
             StartCoroutine(CameraZoomOut(cam));
             Debug.Log("LevelUp");
         }
@@ -109,16 +107,9 @@ public class GUIManager : MonoBehaviour
     public void IncreaseGrounds()
     {
         iGrounds++;
-        CheckLevelUp();
+        //CheckLevelUp();
     }
 
-    private void CheckLevelUp()
-    {
-        Debug.Log("Anzahl Groundd:" + iGrounds + " mod: " + (iGrounds % 4));
-        if ((iGrounds-1) % 4 == 0)
-            canLevelUp = true;
-
-    }
 
     public void ShowText(String text)
     {

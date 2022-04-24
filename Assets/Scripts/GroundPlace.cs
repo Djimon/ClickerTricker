@@ -22,6 +22,7 @@ public class GroundPlace : MonoBehaviour
     private int iPrice = 5;
     [SerializeField]
     private float  fGrowthSpeed = 1f;
+    public int points=1;
 
     private Material mat;
     private GUIManager GUI;
@@ -146,8 +147,8 @@ public class GroundPlace : MonoBehaviour
         var sc = Instantiate(SpawnCube);
         sc.gameObject.transform.SetParent(transform);
         sc.gameObject.transform.localPosition = new Vector3(0, 0, 0);
-        sc.gameObject.GetComponent<GroundController>().SetGrowthSpeed(fGrowthSpeed);
-        sc.gameObject.GetComponent<GroundController>().GO();
+        sc.gameObject.GetComponent<GroundController>().Initialize(fGrowthSpeed,points);
+        //sc.gameObject.GetComponent<GroundController>().GO();
         GUI.IncreaseGrounds();
         
         isVisible = false;

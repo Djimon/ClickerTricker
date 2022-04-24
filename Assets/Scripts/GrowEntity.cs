@@ -33,11 +33,12 @@ public class GrowEntity : MonoBehaviour
         gameObject.transform.localPosition = new Vector3(0, 0.75F, 0);
     }
 
-    public void Initialize(GameObject parent, float speed)
+    public void Initialize(GameObject parent, float speed, int point= 1)
     {
         ParentGround = parent;
         gameObject.transform.SetParent(parent.transform);
         gameObject.transform.localPosition = new Vector3(0, 0, 0);
+        iPoints = point;
         fgrowthSpeed = speed;
         isGrowable = true;
         Debug.Log("Initialized Growable");
