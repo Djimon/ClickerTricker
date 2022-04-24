@@ -57,7 +57,7 @@ public class GUIManager : MonoBehaviour
         TM_Points.text = "Anzahl Mana: " + iglobalPoints;
         collect.Play();
         GB.UpdatePlaces(iglobalPoints);
-        if(iglobalPoints < iLevelUpPrice)
+        if(canLevelUp && iglobalPoints < iLevelUpPrice)
         {
             var c = TM_LevelUp.GetComponentInParent<Image>().color;
             TM_LevelUp.GetComponentInParent<Image>().color = new Color(c.r, c.g, c.b, 0.3f);
@@ -149,7 +149,7 @@ public class GUIManager : MonoBehaviour
     IEnumerator ShowNotifyPanel(Transform panel, float y0)
     {     
 
-        for (float a = y0; a< y0+50; a+=1f)
+        for (float a = y0; a< y0+100; a+=1f)
         {
             panel.transform.localPosition = new Vector3(0, a, 0);
             yield return null;
@@ -159,7 +159,7 @@ public class GUIManager : MonoBehaviour
     IEnumerator HideNotifyPanel(Transform panel, float y0, float wait=0.3f)
     {
         
-        for (float a = y0; a >= y0-50; a -= 1f)
+        for (float a = y0; a >= y0-100; a -= 1f)
         {
             Debug.Log("from "+ panel.transform.localPosition.y +" to " +a);
             panel.transform.localPosition = new Vector3(0, a, 0);
