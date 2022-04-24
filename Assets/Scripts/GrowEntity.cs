@@ -8,7 +8,8 @@ public class GrowEntity : MonoBehaviour
     [Range(0.1f, 1f)]
     public float fgrowth = 0.1f;
 
-    public float fgrowthSpeed = 0.1f;
+    [SerializeField]
+    public float fgrowthSpeed = 0.05f;
     public int iPoints = 1;
 
 
@@ -16,6 +17,8 @@ public class GrowEntity : MonoBehaviour
 
     [SerializeField]
     private GameObject ParentGround;
+    [SerializeField]
+    private bool isGrowable = false;
 
 
     private void Awake()
@@ -30,10 +33,21 @@ public class GrowEntity : MonoBehaviour
         gameObject.transform.localPosition = new Vector3(0, 0.75F, 0);
     }
 
+    public void Initialize(GameObject parent, float speed)
+    {
+        ParentGround = parent;
+        gameObject.transform.SetParent(parent.transform);
+        gameObject.transform.localPosition = new Vector3(0, 0, 0);
+        fgrowthSpeed = speed;
+        isGrowable = true;
+        Debug.Log("Initialized Growable");
+    }
+
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(!isReady)
+        if(!isReady && isGrowable)
         {
             fgrowth = fgrowth * ((100 + fgrowthSpeed) / 100);
             //Debug.Log("Wachstumsrate: "+ fgrowth);

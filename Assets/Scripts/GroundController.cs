@@ -10,6 +10,9 @@ public class GroundController : MonoBehaviour
     [SerializeField]
     private int iPoints = 0;
     private bool hasChild = false;
+    public float fgrowthSpeed = 1f;
+
+    private bool isReady = false;
 
     private GUIManager GUI;
   
@@ -18,7 +21,7 @@ public class GroundController : MonoBehaviour
     void Start()
     {
 
-        SpawnNewChild();
+        //SpawnNewChild();
         GUI = GameObject.FindGameObjectWithTag("GUI").GetComponent<GUIManager>();
         if (GUI == null)
             Debug.LogError("No GUI instance found.");
@@ -29,17 +32,29 @@ public class GroundController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!hasChild)
+        if (!hasChild && isReady)
         {
             SpawnNewChild();
         }
+    }
+
+    public void SetGrowthSpeed(float speed)
+    {
+        fgrowthSpeed = speed;
+        Debug.Log("growth speed set to "+speed);
+    }
+
+    public void GO()
+    {
+        Debug.Log("Start Spawning growables");
+        isReady = true;
     }
 
     public void SpawnNewChild()
     {
         var newGO = Instantiate(Growable, new Vector3(0, 0, 0), Quaternion.identity);
         newGO.transform.SetParent(this.transform);
-        newGO.GetComponent<GrowEntity>().SetParentGround(gameObject);
+        newGO.GetComponent<GrowEntity>().Initialize(gameObject, fgrowthSpeed);
         newGO.transform.localPosition = new Vector3(0, 0.75f, 0);
         hasChild = true;
     }
@@ -47,7 +62,7 @@ public class GroundController : MonoBehaviour
     public void AddPoints(int points)
     {
         iPoints += points;
-        GUI.SendPointsToGUI(points);
+        GUI.UpdatePointsToGUI(points);
         hasChild = false;
     }
 }

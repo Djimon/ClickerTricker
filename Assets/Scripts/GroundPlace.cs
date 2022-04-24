@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,9 +16,12 @@ public class GroundPlace : MonoBehaviour
     private bool isVisible = false;
     private bool isPlaceable = false;
     private bool hasLeft = true;
+    private bool isPlaced = false;
 
     [SerializeField]
     private int iPrice = 5;
+    [SerializeField]
+    private float  fGrowthSpeed = 1f;
 
     private Material mat;
     private GUIManager GUI;
@@ -41,6 +45,11 @@ public class GroundPlace : MonoBehaviour
     public void SetSpawnCube(GameObject cube)
     {
         SpawnCube = cube;
+    }
+
+    internal bool IsPlaced()
+    {
+        return isPlaced;
     }
 
     public int ID()
@@ -85,6 +94,7 @@ public class GroundPlace : MonoBehaviour
             var gb = Instantiate(GreenBlink);
             gb.transform.SetParent(transform);
             gb.transform.localPosition = new Vector3(0, 0, 0);
+            GUI.ShowText("Place new Ground-Block (cost: "+iPrice+")");
             hasLeft = false;
 
         }
@@ -95,37 +105,52 @@ public class GroundPlace : MonoBehaviour
             var rb = Instantiate(RedBlink);
             rb.transform.SetParent(transform);
             rb.transform.localPosition = new Vector3(0, 0, 0);
+            GUI.ShowText("Can't afford (cost: " + iPrice + ")");
             hasLeft = false;
         }
     }
 
     private void OnMouseExit()
     {
-        var go = transform.GetChild(0);
-        Destroy(go.gameObject);
+        if(!isPlaced)
+            DestroyGhost();
+    }
 
-        hasLeft = true;
-        
+    public void DestroyGhost()
+    {
+        if (isVisible && !hasLeft)
+        {
+            var go = transform.GetChild(0);
+            Destroy(go.gameObject);
+            hasLeft = true;
+            GUI.HideText();
+        }
+       
     }
 
     private void OnMouseDown()
     {
-        if(isVisible && isPlaceable)
+        if(isVisible && isPlaceable && !isPlaced)
         {
+            DestroyGhost();
             SpawnGround();
+            GUI.ShowText("Purchased 1 new ground for " + iPrice);
             GUI.NotifyPurchase(iPrice);
+            GUI.HideText(1f);
+            
         }
     }
 
     public void SpawnGround()
     {
         var sc = Instantiate(SpawnCube);
-        sc.transform.SetParent(transform);
-        sc.transform.localPosition = new Vector3(0, 0, 0);
-
+        sc.gameObject.transform.SetParent(transform);
+        sc.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+        sc.gameObject.GetComponent<GroundController>().SetGrowthSpeed(fGrowthSpeed);
+        sc.gameObject.GetComponent<GroundController>().GO();
         GUI.IncreaseGrounds();
         
-        isPlaceable = false;
         isVisible = false;
+        isPlaced = true;
     }
 }

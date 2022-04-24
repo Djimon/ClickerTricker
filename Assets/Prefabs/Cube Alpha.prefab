@@ -112,3 +112,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Growable: {fileID: 3191323568363497136, guid: b65f3f7c10494b24e8a11852a4e0b825, type: 3}
   iPoints: 0
+  fgrowthSpeed: 5

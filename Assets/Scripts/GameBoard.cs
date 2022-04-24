@@ -10,10 +10,10 @@ public class GameBoard : MonoBehaviour
     private GameObject[] places;
 
     [SerializeField]
-    private int iBasePrice = 1;
-    private int iNextPrice = 5;
+    private int iBasePrice = 0;
+    private int iNextPrice = 0;
 
-    private int iBoardLevel = 1;
+    private int iBoardLevel = 0;
 
     void Start()
     {
@@ -24,7 +24,8 @@ public class GameBoard : MonoBehaviour
             x.gameObject.GetComponent<GroundPlace>().SetPrice(iNextPrice);
             x.gameObject.GetComponent<GroundPlace>().SetSpawnCube(Cube);
         }
-        iBoardLevel = 1;
+        iBoardLevel = 0;
+        iNextPrice = 0;
     }
 
     // Update is called once per frame
@@ -36,13 +37,13 @@ public class GameBoard : MonoBehaviour
 
     public void UpdatePlaces(int points)
     {
-        Debug.Log("Update Board");
+        Debug.Log("Update Places");
         if (points >= iNextPrice)
         { 
             foreach( var x in places)
             {
                 var go = x.gameObject.GetComponent<GroundPlace>();
-                if ( go.IsVisible() && !go.IsPlacable())
+                if ( go.IsVisible() && !go.IsPlacable() && !go.IsPlaced())
                 {
                     go.SetPlaceability(true);
                 }    
@@ -53,7 +54,7 @@ public class GameBoard : MonoBehaviour
             foreach (var x in places)
             {
                 var go = x.gameObject.GetComponent<GroundPlace>();
-                if (go.IsPlacable())
+                if (go.IsPlacable() && !go.IsPlaced())
                     go.SetPlaceability(false);
             }
         }
@@ -62,7 +63,7 @@ public class GameBoard : MonoBehaviour
 
     public void IncreasePlaceLevel()
     {
-        if(iBoardLevel>=4)
+        if(iBoardLevel>=5)
         {
             //nichts passiert
         }
@@ -76,13 +77,15 @@ public class GameBoard : MonoBehaviour
 
     internal void IncreasePrice(int price)
     {
-        iNextPrice = (int)Math.Round(price * 1.66);
+        if(iNextPrice==0)
+            iNextPrice = 5;
+        else
+            iNextPrice = (int)Math.Round(price * 1.5);        
+        
         Debug.Log("Preise erhöht auf " + iNextPrice);
         foreach (var x in places)
         {
-            var go = x.gameObject.GetComponent<GroundPlace>();
-            if(go.IsVisible())
-                go.SetPrice(iNextPrice);
+            x.gameObject.GetComponent<GroundPlace>().SetPrice(iNextPrice);
         }
 
     }
@@ -92,14 +95,44 @@ public class GameBoard : MonoBehaviour
         Debug.Log("Boardlevel: "+ iBoardLevel);
         switch(iBoardLevel)
         {
-            case 2: ActivatePlace(5);
-                    ActivatePlace(6);
-                    ActivatePlace(7);
-                    ActivatePlace(8);
+            case 1:
+                ActivatePlace(1);
+                ActivatePlace(2);
+                ActivatePlace(3);
+                ActivatePlace(4);
+                break;
+            case 2:
+                ActivatePlace(5);
+                ActivatePlace(6);
+                ActivatePlace(7);
+                ActivatePlace(8);
+                break;
+            case 3: 
+                ActivatePlace(9);
+                ActivatePlace(10);
+                ActivatePlace(11);
+                ActivatePlace(12);
+                break;
+            case 4:
+                ActivatePlace(13);
+                ActivatePlace(14);
+                ActivatePlace(15);
+                ActivatePlace(16);
+                break;
+            case 5:
+                ActivatePlace(17);
+                ActivatePlace(18);
+                ActivatePlace(19);
+                ActivatePlace(20);
+                ActivatePlace(21);
+                ActivatePlace(22);
+                ActivatePlace(23);
+                ActivatePlace(24);
                 break;
         }
     }
 
+    //TODO: umschreiben, und die Liste der Ids mitgeben, so muss die foreach nur eimal durhclaufen werden
     public void ActivatePlace(int id)
     {
         foreach (var x in places)
