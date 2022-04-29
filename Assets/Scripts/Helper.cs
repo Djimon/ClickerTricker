@@ -13,26 +13,31 @@ public static class Helper
     internal static string AutoFormatNumber(float n)
     {
         int size = NSize(n);
-        //Debug.Log("NSize=" + n);
+        if (size <= -8)
+            return "0";
+        //Debug.Log(n + " -> NSize=" + size);
         switch(size)
         {
             //SMALL NUMBERS
+            case 0:
+                if(n>=1)
+                    return n.ToString("N");
+                else
+                    return (n / Mathf.Pow(10, 3 * (size -1))).ToString("#,###.##") + "m";
             case -1:
-                return (n / Mathf.Pow(10, 3 * size)).ToString("#,##0.##") + "m";
+                return (n / Mathf.Pow(10, 3 * (size - 1))).ToString("#,###.##") + "μ";
             case -2:
-                return (n / Mathf.Pow(10, 3 * size)).ToString("#,##0.##") + "μ";
+                return (n / Mathf.Pow(10, 3 * (size - 1))).ToString("#,###.##") + "n";
             case -3:
-                return (n / Mathf.Pow(10, 3 * size)).ToString("#,##0.##") + "n";
+                return (n / Mathf.Pow(10, 3 * (size - 1))).ToString("#,###.##") + "p";
             case -4:
-                return (n / Mathf.Pow(10, 3 * size)).ToString("#,##0.##") + "p";
+                return (n / Mathf.Pow(10, 3 * (size - 1))).ToString("#,###.##") + "f";
             case -5:
-                return (n / Mathf.Pow(10, 3 * size)).ToString("#,##0.##") + "f";
+                return (n / Mathf.Pow(10, 3 * (size - 1))).ToString("#,###.##") + "a";
             case -6:
-                return (n / Mathf.Pow(10, 3 * size)).ToString("#,##0.##") + "a";
+                return (n / Mathf.Pow(10, 3 * (size - 1))).ToString("#,###.##") + "z";
             case -7:
-                return (n / Mathf.Pow(10, 3 * size)).ToString("#,##0.##") + "z";
-            case -8:
-                return (n / Mathf.Pow(10, 3 * size)).ToString("#,##0.##") + "y";
+                return (n / Mathf.Pow(10, 3 * (size - 1))).ToString("#,###.##") + "y";
 
             //LARGE NUMBERS
             case 1: 

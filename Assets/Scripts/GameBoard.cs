@@ -35,11 +35,16 @@ public class GameBoard : MonoBehaviour
         //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(468743.41f));
         //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(4687.41f));
         //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(46.41f));
-        //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.0415f));
-        //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.0000415f));
-        //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.000000000415f));
-        //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.0000000000000415f));
-        //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.000000000000000000000000415f));
+        Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.415f));
+        Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.0415f));
+        Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.00415f));
+        Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.000415f));
+        Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.0000415f));
+        Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.000000415f));
+        Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.0000000415f));
+        Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.000000000415f));
+        Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.0000000000000415f));
+        Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.000000000000000000000000415f));
     }
 
     // Update is called once per frame
