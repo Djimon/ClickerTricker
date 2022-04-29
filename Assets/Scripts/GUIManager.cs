@@ -7,15 +7,24 @@ using UnityEngine.UI;
 public class GUIManager : MonoBehaviour
 {
     public GameObject LevelUpBtn;
+    public GameObject IncrGainBtn;
+    public GameObject IncrGrowthBtn;
+    public GameObject UpgrBaseBtn;
     public GameObject AnzahlText;
     public GameObject GameBoard;
     public GameObject NotifyPanel;
     public Camera cam;
 
-    private int iglobalPoints = 0;
+
+    private float fglobalPoints = 0;
     private int iGrounds = 0;
 
-    private int iLevelUpPrice = 10;
+    private float fLevelUpPrice = 10;
+    private float fIncreaseGainPrice = 100;
+    private int iGainLevelUp = 0;
+    private float fIncreaseGrowthRatePrice = 25;
+    private float fUpgradeBaseGroundPrice = 100;
+    private float fAutomateGroundPrice = 100;
 
     private float fNotifybaseHeight = 0;
 
@@ -36,13 +45,18 @@ public class GUIManager : MonoBehaviour
     void Start()
     {
         TM_Points = AnzahlText.GetComponent<Text>();
-        TM_Points.text = "Anzahl Mana: " + iglobalPoints;
+        TM_Points.text = ""+fglobalPoints;
         GB = GameBoard.gameObject.GetComponent<GameBoard>();
         TM_LevelUp = LevelUpBtn.GetComponentInChildren<Text>();
-        TM_LevelUp.text = "Ground+ (Price: " + iLevelUpPrice + ")";
-        GB.UpdatePlaces(iglobalPoints);;
+        TM_LevelUp.text = "Ground+ (Price: " + fLevelUpPrice + ")";
+        GB.UpdatePlaces(fglobalPoints);;
         UpdatePoints();
         fNotifybaseHeight = NotifyPanel.transform.localPosition.y;
+        fLevelUpPrice = GameStats.flevelUpStartPrice;
+        fIncreaseGainPrice = GameStats.fIncreaseGlobalGainPrice;
+        fIncreaseGrowthRatePrice = GameStats.fIncreaseGrowthRatePrice;
+        fUpgradeBaseGroundPrice = GameStats.fUpgradeBaseGroundPrice;
+        fAutomateGroundPrice = GameStats.fAutomateGroundPrice;
     }
 
     // Update is called once per frame
@@ -53,55 +67,130 @@ public class GUIManager : MonoBehaviour
 
     private void UpdatePoints()
     {
-        TM_Points.text = "Anzahl Mana: " + iglobalPoints;
+        TM_Points.text = "" + fglobalPoints;
         collect.Play();
-        GB.UpdatePlaces(iglobalPoints);
-        if(iglobalPoints < iLevelUpPrice)
+        GB.UpdatePlaces(fglobalPoints);
+        if(fglobalPoints < fLevelUpPrice)
         {
             var c = TM_LevelUp.GetComponentInParent<Image>().color;
             TM_LevelUp.GetComponentInParent<Image>().color = new Color(c.r, c.g, c.b, 0.3f);
         }
-        else if (iglobalPoints >= iLevelUpPrice)
+        else if (fglobalPoints >= fLevelUpPrice)
         {
             var c = TM_LevelUp.GetComponentInParent<Image>().color;
             TM_LevelUp.GetComponentInParent<Image>().color = new Color(c.r, c.g, c.b, 1f);
         }
 
+        if (GameStats.IsAutomationPreview)
+            CheckAutomationPrice();
     }
 
-    public void UpdatePointsToGUI(int points)
+    public void UpdatePointsToGUI(float points)
     {
-        iglobalPoints += points;
+        fglobalPoints += points;
         UpdatePoints();
     }
 
-    public int GetGlobalPoints()
+    public float GetGlobalPoints()
     {
-        return iglobalPoints;
+        return fglobalPoints;
     }
 
-    public void LevelUp()
+    //GUI-BUtton-ACtion
+    public void clk_LevelUp()
     {
         //CheckLevelUp();
-        if (iglobalPoints >= iLevelUpPrice)
+        if (fglobalPoints >= fLevelUpPrice)
         {
-            GB.IncreasePlaceLevel();
-            UpdatePointsToGUI(-iLevelUpPrice);
-            iLevelUpPrice *= 2;
-            TM_LevelUp.text = "Ground+ (Price: " + iLevelUpPrice + ")";
-            StartCoroutine(CameraZoomOut(cam));
-            Debug.Log("LevelUp");
+            int x = GB.IncreasePlaceLevel();
+            if (x < GameStats.imaxBoardLevel)
+            {
+                UpdatePointsToGUI(-fLevelUpPrice);
+                fLevelUpPrice *= GameStats.fLevelUpPriceMultiplier;
+                TM_LevelUp.text = "Ground+ (Price: " + fLevelUpPrice + ")";
+                StartCoroutine(CameraZoomOut(cam));
+                Debug.Log("LevelUp");
+            }
+            else
+                Debug.Log("Max level");            
         }
         else
-            Debug.Log("No LevelUp possible");
-                
+            Debug.Log("No LevelUp possible");                
     }
 
-    internal void NotifyPurchase(int price)
+    public void clk_IncreaseGrowthGlobally()
+    {
+        if(fglobalPoints >= fIncreaseGrowthRatePrice)
+        {
+            UpdatePointsToGUI(-fIncreaseGrowthRatePrice);
+            fIncreaseGrowthRatePrice *= GameStats.fIncreaseGrowthPriceMultiplier;
+            IncrGrowthBtn.GetComponentInChildren<Text>().text = "Growth +"+ 100*(GameStats.fGrowthRateMultiplier - 1) +"% (" + fIncreaseGrowthRatePrice + ")";
+            GameObject[] Grounds = GameObject.FindGameObjectsWithTag("Ground");
+            foreach (GameObject g in Grounds)
+            {
+                g.gameObject.GetComponent<GroundController>().UpdateGrowthSpeed(GameStats.fGrowthRateMultiplier);
+            }
+            Debug.Log(Grounds.Length + " Grounds found");
+        }       
+    }
+
+    public void clk_IncreaseGainGlobally()
+    {
+        if (fglobalPoints >= fIncreaseGainPrice)
+        {
+            if (iGainLevelUp % 5 == 0)
+                GameStats.iIncreasePointsglobally *= GameStats.iInCreaseGainLevelUpMultiplier;
+            UpdatePointsToGUI(-fIncreaseGainPrice);
+            fIncreaseGainPrice *= GameStats.fIncreaseGainPriceMultiplier;
+            IncrGainBtn.GetComponentInChildren<Text>().text = "Profit +"+ GameStats.iIncreasePointsglobally +" (" + fIncreaseGainPrice + ")";
+            GameObject[] Grounds = GameObject.FindGameObjectsWithTag("Ground");
+            foreach (GameObject g in Grounds)
+            {
+                g.gameObject.GetComponent<GroundController>().UpdatePoints(GameStats.iIncreasePointsglobally);
+                //Debug.Log("Points Updated: " + i);
+            }
+            Debug.Log(Grounds.Length + " Grounds found");
+            iGainLevelUp++;
+        }
+    }
+
+    public void clk_UpgradeBaseGround()
+    {
+        if (fglobalPoints >= fUpgradeBaseGroundPrice)
+        {
+            UpdatePointsToGUI(-fUpgradeBaseGroundPrice);
+            fUpgradeBaseGroundPrice = Mathf.Floor( fUpgradeBaseGroundPrice * GameStats.fUpgradeBaseGroundPriceMultiplier);
+            UpgrBaseBtn.GetComponentInChildren<Text>().text = "Base +" + GameStats.iUpgradeBaseGroundPoints + " (" + fUpgradeBaseGroundPrice + ")";
+            GameObject[] Grounds = GameObject.FindGameObjectsWithTag("Ground");
+            foreach (GameObject g in Grounds)
+            {
+                g.gameObject.GetComponent<GroundController>().UpdatePointsBaseGround(GameStats.iUpgradeBaseGroundPoints);
+            }
+        }
+    }
+
+    public void clk_AutomateGround()
+    {
+        CheckAutomationPrice();
+    }
+
+    private void CheckAutomationPrice()
+    {
+        if (fglobalPoints >= fAutomateGroundPrice)
+        {
+            GameStats.IsAutomationPreview = true;
+        }
+        else
+        {
+            GameStats.IsAutomationPreview = false;
+        }
+    }
+
+    internal void NotifyPurchase(float price)
     {
         UpdatePointsToGUI(-price);
         GB.IncreasePrice(price);
-        GB.UpdatePlaces(iglobalPoints);
+        GB.UpdatePlaces(fglobalPoints);
     }
 
     public void IncreaseGrounds()
@@ -149,7 +238,7 @@ public class GUIManager : MonoBehaviour
 
     IEnumerator HideNotifyPanel(Transform panel, float y0, float wait=0.3f)
     {
-        
+        yield return new WaitForSeconds(wait);
         for (float a = y0; a >= y0-100; a -= 1f)
         {
             Debug.Log("from "+ panel.transform.localPosition.y +" to " +a);

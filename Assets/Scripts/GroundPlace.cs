@@ -9,6 +9,7 @@ public class GroundPlace : MonoBehaviour
     public Material BaseMaterial;
     public GameObject GreenBlink;
     public GameObject RedBlink;
+    
 
     private GameObject SpawnCube;
 
@@ -19,7 +20,7 @@ public class GroundPlace : MonoBehaviour
     private bool isPlaced = false;
 
     [SerializeField]
-    private int iPrice = 5;
+    private float fPrice = 5;
     [SerializeField]
     private float  fGrowthSpeed = 1f;
     public int points=1;
@@ -80,9 +81,9 @@ public class GroundPlace : MonoBehaviour
             gameObject.GetComponent<MeshRenderer>().enabled = true;
     }
 
-    public void SetPrice(int price)
+    public void SetPrice(float price)
     {
-        iPrice = price;
+        fPrice = price;
     }
 
     private void OnMouseOver()
@@ -95,7 +96,7 @@ public class GroundPlace : MonoBehaviour
             var gb = Instantiate(GreenBlink);
             gb.transform.SetParent(transform);
             gb.transform.localPosition = new Vector3(0, 0, 0);
-            GUI.ShowText("Place new Ground-Block (cost: "+iPrice+")");
+            GUI.ShowText("Place new Ground-Block (cost: "+fPrice+")");
             hasLeft = false;
 
         }
@@ -106,9 +107,10 @@ public class GroundPlace : MonoBehaviour
             var rb = Instantiate(RedBlink);
             rb.transform.SetParent(transform);
             rb.transform.localPosition = new Vector3(0, 0, 0);
-            GUI.ShowText("Can't afford (cost: " + iPrice + ")");
+            GUI.ShowText("Can't afford (cost: " + fPrice + ")");
             hasLeft = false;
         }
+
     }
 
     private void OnMouseExit()
@@ -121,12 +123,12 @@ public class GroundPlace : MonoBehaviour
     {
         if (isVisible && !hasLeft)
         {
-            var go = transform.GetChild(0);
-            Destroy(go.gameObject);
+            //var go = transform.GetChild(0);
+            //Destroy(go.gameObject);
+            Destroy(GameObject.FindGameObjectWithTag("Ghostblock"));
             hasLeft = true;
             GUI.HideText();
         }
-       
     }
 
     private void OnMouseDown()
@@ -135,10 +137,9 @@ public class GroundPlace : MonoBehaviour
         {
             DestroyGhost();
             SpawnGround();
-            GUI.ShowText("Purchased 1 new ground for " + iPrice);
-            GUI.NotifyPurchase(iPrice);
-            GUI.HideText(1f);
-            
+            GUI.ShowText("Purchased 1 new ground for " + fPrice);
+            GUI.NotifyPurchase(fPrice);
+            GUI.HideText(2f);
         }
     }
 

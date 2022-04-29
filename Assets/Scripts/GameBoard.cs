@@ -10,22 +10,22 @@ public class GameBoard : MonoBehaviour
     private GameObject[] places;
 
     [SerializeField]
-    private int iBasePrice = 0;
-    private int iNextPrice = 0;
+    private float fBasePrice = 0;
+    private float fNextPrice = 0;
 
     private int iBoardLevel = 0;
 
     void Start()
     {
         places = GameObject.FindGameObjectsWithTag("Place");
-        iNextPrice = iBasePrice;
+        fNextPrice = fBasePrice;
         foreach( var x in places)
         {
-            x.gameObject.GetComponent<GroundPlace>().SetPrice(iNextPrice);
+            x.gameObject.GetComponent<GroundPlace>().SetPrice(fNextPrice);
             x.gameObject.GetComponent<GroundPlace>().SetSpawnCube(Cube);
         }
         iBoardLevel = 0;
-        iNextPrice = 0;
+        fNextPrice = 0;
     }
 
     // Update is called once per frame
@@ -35,10 +35,10 @@ public class GameBoard : MonoBehaviour
         
     }
 
-    public void UpdatePlaces(int points)
+    public void UpdatePlaces(float points)
     {
         Debug.Log("Update Places");
-        if (points >= iNextPrice)
+        if (points >= fNextPrice)
         { 
             foreach( var x in places)
             {
@@ -49,7 +49,7 @@ public class GameBoard : MonoBehaviour
                 }    
             }
         }
-        else if (points < iNextPrice)
+        else if (points < fNextPrice)
         {
             foreach (var x in places)
             {
@@ -61,9 +61,9 @@ public class GameBoard : MonoBehaviour
 
     }
 
-    public void IncreasePlaceLevel()
+    public int IncreasePlaceLevel()
     {
-        if(iBoardLevel>=5)
+        if(iBoardLevel>=GameStats.imaxBoardLevel)
         {
             //nichts passiert
         }
@@ -73,19 +73,20 @@ public class GameBoard : MonoBehaviour
             UpdateBoardLevel();            
         }
 
+        return iBoardLevel;
     }
 
-    internal void IncreasePrice(int price)
+    internal void IncreasePrice(float price)
     {
-        if(iNextPrice==0)
-            iNextPrice = 5;
+        if(fNextPrice==GameStats.fFirstGroundPrice)
+            fNextPrice = GameStats.fSecondGroundPrice;
         else
-            iNextPrice = (int)Math.Round(price * 1.5);        
+            fNextPrice = (int)Math.Round(price * GameStats.fGroundPriceMultiplier);        
         
-        Debug.Log("Preise erhöht auf " + iNextPrice);
+        Debug.Log("Preise erhöht auf " + fNextPrice);
         foreach (var x in places)
         {
-            x.gameObject.GetComponent<GroundPlace>().SetPrice(iNextPrice);
+            x.gameObject.GetComponent<GroundPlace>().SetPrice(fNextPrice);
         }
 
     }

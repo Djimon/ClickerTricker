@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2265224477379116425
+--- !u!1 &8711502392860163242
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2265224477379116437}
-  - component: {fileID: 2265224477379116436}
-  - component: {fileID: 2265224477379116427}
-  - component: {fileID: 2265224477379116426}
-  - component: {fileID: 2265224477379116438}
+  - component: {fileID: 8711502392860163241}
+  - component: {fileID: 8711502392860163253}
+  - component: {fileID: 8711502392860163254}
+  - component: {fileID: 8711502392860163255}
+  - component: {fileID: 8711502392860163240}
   m_Layer: 0
-  m_Name: Cube Alpha
-  m_TagString: Ground
+  m_Name: Place
+  m_TagString: Place
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2265224477379116437
+--- !u!4 &8711502392860163241
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2265224477379116425}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.66, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_GameObject: {fileID: 8711502392860163242}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalScale: {x: 0.14285713, y: 0.14285712, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2265224477379116436
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!33 &8711502392860163253
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2265224477379116425}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2265224477379116427
+  m_GameObject: {fileID: 8711502392860163242}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &8711502392860163254
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2265224477379116425}
+  m_GameObject: {fileID: 8711502392860163242}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bb23933ae8c605a4d9c3f0bce193b75f, type: 2}
+  - {fileID: 2100000, guid: beb7876f6bce8ba4dbe63c78e2d573d7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,35 +85,38 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2265224477379116426
-BoxCollider:
+--- !u!64 &8711502392860163255
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2265224477379116425}
+  m_GameObject: {fileID: 8711502392860163242}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2265224477379116438
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &8711502392860163240
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2265224477379116425}
+  m_GameObject: {fileID: 8711502392860163242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 476cafa6cba35aa46aadb264a71df3a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 9943597a325643245b28c5b15bd9e4e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Growable: {fileID: 3191323568363497136, guid: b65f3f7c10494b24e8a11852a4e0b825, type: 3}
+  id: 0
+  BaseMaterial: {fileID: 2100000, guid: beb7876f6bce8ba4dbe63c78e2d573d7, type: 2}
+  GreenBlink: {fileID: 1389201490306278578, guid: cf65fdcbbbb9b0d4e879a91c6656faef, type: 3}
+  RedBlink: {fileID: 4115126474701265797, guid: 6f27478cb2d786643bd1534507193934, type: 3}
   AutomationGhostBlock: {fileID: 7182273933658204438, guid: 65b4f4e4a388b2d47bd7d0dd0104545c, type: 3}
-  AutomatedMaterial: {fileID: 2100000, guid: e94e505197a8d604ab2186afc8039255, type: 2}
-  iPoints: 0
-  fgrowthSpeed: 5
-  iGivePoints: 1
-  autoCollect: 0
+  isVisible: 1
+  fPrice: 5
+  fGrowthSpeed: 5
+  points: 1

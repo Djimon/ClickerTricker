@@ -19,6 +19,8 @@ public class GrowEntity : MonoBehaviour
     private GameObject ParentGround;
     [SerializeField]
     private bool isGrowable = false;
+    [SerializeField]
+    private bool isAutoCollect = false;
 
 
     private void Awake()
@@ -33,7 +35,7 @@ public class GrowEntity : MonoBehaviour
         gameObject.transform.localPosition = new Vector3(0, 0.75F, 0);
     }
 
-    public void Initialize(GameObject parent, float speed, int point= 1)
+    public void Initialize(GameObject parent, float speed, int point= 1, bool autoCollect = false)
     {
         ParentGround = parent;
         gameObject.transform.SetParent(parent.transform);
@@ -41,6 +43,7 @@ public class GrowEntity : MonoBehaviour
         iPoints = point;
         fgrowthSpeed = speed;
         isGrowable = true;
+        isAutoCollect = autoCollect;
         Debug.Log("Initialized Growable");
     }
 
@@ -55,7 +58,15 @@ public class GrowEntity : MonoBehaviour
             gameObject.transform.localScale = new Vector3(fgrowth, fgrowth, fgrowth);
 
             if (fgrowth >= 1f)
-                isReady = true;                
+            {
+                isReady = true;
+                if(isAutoCollect)
+                {
+                    CollectMana();
+                }
+
+            }
+                               
         }
     }
 
@@ -65,11 +76,16 @@ public class GrowEntity : MonoBehaviour
             Debug.Log("Not Ready");
         else
         {
-            Debug.Log("GaaaiinZ!!!");
-            ParentGround.GetComponent<GroundController>().AddPoints(iPoints);
-            Destroy(gameObject);
+            CollectMana();
         }
-            
+
+    }
+
+    private void CollectMana()
+    {
+        Debug.Log("GaaaiinZ!!!");
+        ParentGround.GetComponent<GroundController>().AddPoints(iPoints);
+        Destroy(gameObject);
     }
 
     public void SetParentGround(GameObject parent)

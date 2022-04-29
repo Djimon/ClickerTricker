@@ -6,6 +6,8 @@ TagManager:
   tags:
   - GUI
   - Place
+  - Ground
+  - Ghostblock
   layers:
   - Default
   - TransparentFX
