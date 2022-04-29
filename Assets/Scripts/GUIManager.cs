@@ -48,7 +48,7 @@ public class GUIManager : MonoBehaviour
         TM_Points.text = ""+fglobalPoints;
         GB = GameBoard.gameObject.GetComponent<GameBoard>();
         TM_LevelUp = LevelUpBtn.GetComponentInChildren<Text>();
-        TM_LevelUp.text = "Ground+ (Price: " + fLevelUpPrice + ")";
+        TM_LevelUp.text = "Ground+ (Price: " + Helper.AutoFormatNumber(fLevelUpPrice) + ")";
         GB.UpdatePlaces(fglobalPoints);;
         UpdatePoints();
         fNotifybaseHeight = NotifyPanel.transform.localPosition.y;
@@ -67,7 +67,7 @@ public class GUIManager : MonoBehaviour
 
     private void UpdatePoints()
     {
-        TM_Points.text = "" + fglobalPoints;
+        TM_Points.text = "" + Helper.AutoFormatNumber(fglobalPoints);
         collect.Play();
         GB.UpdatePlaces(fglobalPoints);
         if(fglobalPoints < fLevelUpPrice)
@@ -107,7 +107,7 @@ public class GUIManager : MonoBehaviour
             {
                 UpdatePointsToGUI(-fLevelUpPrice);
                 fLevelUpPrice *= GameStats.fLevelUpPriceMultiplier;
-                TM_LevelUp.text = "Ground+ (Price: " + fLevelUpPrice + ")";
+                TM_LevelUp.text = "Ground+ (Price: " + Helper.AutoFormatNumber(fLevelUpPrice) + ")";
                 StartCoroutine(CameraZoomOut(cam));
                 Debug.Log("LevelUp");
             }
@@ -124,7 +124,7 @@ public class GUIManager : MonoBehaviour
         {
             UpdatePointsToGUI(-fIncreaseGrowthRatePrice);
             fIncreaseGrowthRatePrice *= GameStats.fIncreaseGrowthPriceMultiplier;
-            IncrGrowthBtn.GetComponentInChildren<Text>().text = "Growth +"+ 100*(GameStats.fGrowthRateMultiplier - 1) +"% (" + fIncreaseGrowthRatePrice + ")";
+            IncrGrowthBtn.GetComponentInChildren<Text>().text = "Growth +"+ 100*(GameStats.fGrowthRateMultiplier - 1) +"% (" + Helper.AutoFormatNumber(fIncreaseGrowthRatePrice) + ")";
             GameObject[] Grounds = GameObject.FindGameObjectsWithTag("Ground");
             foreach (GameObject g in Grounds)
             {
@@ -142,7 +142,7 @@ public class GUIManager : MonoBehaviour
                 GameStats.iIncreasePointsglobally *= GameStats.iInCreaseGainLevelUpMultiplier;
             UpdatePointsToGUI(-fIncreaseGainPrice);
             fIncreaseGainPrice *= GameStats.fIncreaseGainPriceMultiplier;
-            IncrGainBtn.GetComponentInChildren<Text>().text = "Profit +"+ GameStats.iIncreasePointsglobally +" (" + fIncreaseGainPrice + ")";
+            IncrGainBtn.GetComponentInChildren<Text>().text = "Profit +"+ GameStats.iIncreasePointsglobally +" (" + Helper.AutoFormatNumber(fIncreaseGainPrice) + ")";
             GameObject[] Grounds = GameObject.FindGameObjectsWithTag("Ground");
             foreach (GameObject g in Grounds)
             {
@@ -160,7 +160,7 @@ public class GUIManager : MonoBehaviour
         {
             UpdatePointsToGUI(-fUpgradeBaseGroundPrice);
             fUpgradeBaseGroundPrice = Mathf.Floor( fUpgradeBaseGroundPrice * GameStats.fUpgradeBaseGroundPriceMultiplier);
-            UpgrBaseBtn.GetComponentInChildren<Text>().text = "Base +" + GameStats.iUpgradeBaseGroundPoints + " (" + fUpgradeBaseGroundPrice + ")";
+            UpgrBaseBtn.GetComponentInChildren<Text>().text = "Base +" + GameStats.iUpgradeBaseGroundPoints + " (" + Helper.AutoFormatNumber(fUpgradeBaseGroundPrice) + ")";
             GameObject[] Grounds = GameObject.FindGameObjectsWithTag("Ground");
             foreach (GameObject g in Grounds)
             {

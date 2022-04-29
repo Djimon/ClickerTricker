@@ -26,6 +26,20 @@ public class GameBoard : MonoBehaviour
         }
         iBoardLevel = 0;
         fNextPrice = 0;
+
+        //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(4687431165465465465454368743135.41f));
+        //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(4687431154368743135.41f));
+        //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(4687431154368743.41f));
+        //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(46874311543687.41f));
+        //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(46874311543.41f));
+        //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(468743.41f));
+        //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(4687.41f));
+        //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(46.41f));
+        //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.0415f));
+        //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.0000415f));
+        //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.000000000415f));
+        //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.0000000000000415f));
+        //Debug.Log("AutoFormat Number: " + Helper.AutoFormatNumber(0.000000000000000000000000415f));
     }
 
     // Update is called once per frame
