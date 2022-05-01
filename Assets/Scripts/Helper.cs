@@ -2,8 +2,89 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ERarity
+{
+    Common = 0,
+    Uncommon = 1,
+    Rare = 2,
+    VeryRare = 3,
+    Exotic = 4,
+    Epic = 5,
+    Legendary = 6,
+    Unique = 7
+}
+
+public enum ECardEffect
+{
+    AddGain,
+    AddGrowthRate,
+    Tower,
+    Shield
+}
+
+public enum ETowerType
+{
+    none = -1,
+    SingleTarget,
+    Slowing,
+    AoE
+}
+
+public enum EColorNames
+{
+    White = 0,
+    Gray = 1,
+    Cyan = 2,
+    Blue = 3,
+    Yellow = 4,
+    Orange = 5,
+    Magenta = 6,
+    Violet = 7
+}
+
+public static class C
+{
+    private static Hashtable ColorValues = new Hashtable
+    {
+        {EColorNames.White, new Color(1,1,1) },                   // 0 - common = white
+        {EColorNames.Gray, new Color(0.8f,0.8f,0.8f) },          // 1 - uncommon = gray
+        {EColorNames.Cyan, new Color(100f/255f,230f/255f,230f/255f) }, // 2 - rare = cyan
+        {EColorNames.Blue, new Color(100f/255f,150f/255f,230f/255f) }, // 3 - VeryRare   = blue
+        {EColorNames.Yellow, new Color(235f/255f,215f/255f,25f/255f) },  // 4 - Exotic = yellow
+        {EColorNames.Orange, new Color(235f/255f,100f/255f,25f/255f) },  // 5 - Epic = orange
+        {EColorNames.Magenta, new Color(165f/255f,0,85f/255f) },        // 6 - Legendary = magenta
+        {EColorNames.Violet, new Color(65f/255f,0,115f/255f) }         // 7 - Unqiue = violet
+    };
+
+    public static Color ColValue (EColorNames cname)
+    {
+        return (Color) ColorValues[cname];
+    }
+
+    public static Color ColValue(int n)
+    {
+        return (Color)ColorValues[(EColorNames) n];
+    }
+
+}
+
 public static class Helper 
 {
+    /*
+     Common      = 0,
+    Uncommon    = 1,
+    Rare        = 2,
+    VeryRare    = 3,
+    Exotic      = 4,
+    Epic        = 5,
+    Legendary   = 6,
+    Unique      = 7
+     */
+    public static Color[] RarityColor = new Color[]
+    {
+        
+    };
+
 
     internal static int NSize(float n)
     {
@@ -84,7 +165,6 @@ public static class Helper
                 return (n / Mathf.Pow(10, 3 * size)).ToString("#,###.##") + "Vig";
             default: return n.ToString("N");
         }
-
     }
 
     

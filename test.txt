@@ -1,1 +1,24 @@
-adsad
+- Start "mobspawn"
+	- in Wellen
+	- 3-5 verschiedene Mobs mit unterschiedlich vielen lebenspunkten
+	- je Mob-schwierigkeit, w'keit , dass zusätzliche Seele dropt
+	- Mob-Schwierigkeit steigt pro Wellle
+	- Mobs klauen Grounds
+		- wenn alle Grounds weg, Runde vorbei
+	- Kaufen während dessen nicht möglich
+	- Mab Spawn beenden
+		- Wellen-Nummer = Anzahl Seelen
+
+Seelenshop
+ - verschieden seltene Kisten mit Karten
+	- Loot-Table:
+		- 3 Türme (standart, slow, AoE)
+		- Türme aufleveln, wie bei Autopets (2karten für Level2, 3 Karten für Level 3, etc.)
+			erhöht schaden/reichweite/geschwidigkeit
+		- Energieschild (ebenfalls genauso Levelbar)
+		- verliert HP pro Hit, einmal down ist es für diese runde weg
+		- +10 Gain Einzel
+		- +50 Gain Einzel
+ - xx Minuten 2x Gain
+ - xx Minuten 2x Growth
+ 
