@@ -17,7 +17,12 @@ MonoBehaviour:
   baseColor: {r: 1, g: 1, b: 1, a: 1}
   ArtworkImage: {fileID: 21300000, guid: 0e078fcf14da9b247a0682c76efdc117, type: 3}
   Rarity: 2
-  basePower: 10
-  ChangeAmount: 10
   DropChanceWithinRarity: 0.1
-  StackLimit: 1
+  StackLimit: 5
+  stats:
+  - Shield +10
+  - Cooldown 180s
+  itemPrefab: {fileID: 7952707814332204171, guid: 61c932276edf4ae4691022fff858b2ca, type: 3}
+  ChangeAmount: 10
+  effectTarget: 0
+  coolDowninSec: 180

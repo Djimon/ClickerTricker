@@ -13,8 +13,8 @@ public enum ECardType
 public class Card : MonoBehaviour
 {
     public ECardType CardType;
-    public Tower tower;
-    public PowerUp powerUp;
+    public TowerObject tower;
+    public PowerUpObject powerUp;
     public Image Artwork;
     public Image Rahmen;
 

@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa8a97f763bd894f8145be3608ffd15, type: 3}
   m_Name: +5 Gain
   m_EditorClassIdentifier: 
-  LootName: +5 Gain
-  Description: Chose a ground that gains an extra +5
+  LootName: +5 Harvest
+  Description: Chose a ground that gains an extra +5 each harvest
   baseColor: {r: 1, g: 1, b: 1, a: 1}
   ArtworkImage: {fileID: 21300000, guid: 0e078fcf14da9b247a0682c76efdc117, type: 3}
   Rarity: 0
-  basePower: 1
-  ChangeAmount: 5
   DropChanceWithinRarity: 0.3
-  StackLimit: 33
+  StackLimit: 12
+  stats:
+  - Harvest +5
+  itemPrefab: {fileID: 0}
+  ChangeAmount: 5
+  effectTarget: 0
+  coolDowninSec: 0

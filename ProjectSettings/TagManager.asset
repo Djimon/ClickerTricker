@@ -15,7 +15,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - UI-Hover
   - 
   - 
   - 
@@ -44,4 +44,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI basic
+    uniqueID: 57829563
+    locked: 0
+  - name: UI Hover
+    uniqueID: 4085593113
     locked: 0

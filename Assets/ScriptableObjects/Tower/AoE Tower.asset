@@ -17,8 +17,15 @@ MonoBehaviour:
   baseColor: {r: 1, g: 1, b: 1, a: 1}
   ArtworkImage: {fileID: 21300000, guid: aa8b98acad5d67042a4e417f44c9d4d7, type: 3}
   Rarity: 5
-  basePower: 1
-  TowerPrefab: {fileID: 0}
-  TowerType: 0
   DropChanceWithinRarity: 0.33
   StackLimit: 3
+  stats:
+  - 'AoE Damage: 5'
+  - Shoot Frequency 0.25/s
+  - 'Range: 2'
+  itemPrefab: {fileID: 2120198216547158575, guid: 59baef9e88b697840ba130c1b999d4dc, type: 3}
+  basePower: 5
+  TowerPrefab: {fileID: 0}
+  TowerType: 0
+  fireRate: 0.25
+  range: 2

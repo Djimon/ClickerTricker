@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum ELootType
+{
+    PowerUp,
+    Tower,
+    Tool
+}
 public enum ERarity
 {
     Common = 0,
@@ -14,12 +21,20 @@ public enum ERarity
     Unique = 7
 }
 
-public enum ECardEffect
+public enum EPowerUpType
 {
+    none = -1,
     AddGain,
     AddGrowthRate,
-    Tower,
-    Shield
+    Shield,
+    ExtraLoot
+}
+
+public enum EEffectTarget
+{
+    none = -1,
+    Single,
+    Global
 }
 
 public enum ETowerType
@@ -52,8 +67,8 @@ public static class C
         {EColorNames.Blue, new Color(100f/255f,150f/255f,230f/255f) }, // 3 - VeryRare   = blue
         {EColorNames.Yellow, new Color(235f/255f,215f/255f,25f/255f) },  // 4 - Exotic = yellow
         {EColorNames.Orange, new Color(235f/255f,100f/255f,25f/255f) },  // 5 - Epic = orange
-        {EColorNames.Magenta, new Color(165f/255f,0,85f/255f) },        // 6 - Legendary = magenta
-        {EColorNames.Violet, new Color(65f/255f,0,115f/255f) }         // 7 - Unqiue = violet
+        {EColorNames.Magenta, new Color(1,45f/255f,155f/255f) },        // 6 - Legendary = magenta
+        {EColorNames.Violet, new Color(150f/255f,10f/255f,1) }         // 7 - Unqiue = violet
     };
 
     public static Color ColValue (EColorNames cname)
@@ -68,24 +83,10 @@ public static class C
 
 }
 
+
 public static class Helper 
 {
-    /*
-     Common      = 0,
-    Uncommon    = 1,
-    Rare        = 2,
-    VeryRare    = 3,
-    Exotic      = 4,
-    Epic        = 5,
-    Legendary   = 6,
-    Unique      = 7
-     */
-    public static Color[] RarityColor = new Color[]
-    {
-        
-    };
-
-
+    
     internal static int NSize(float n)
     {
         return (int)Mathf.Log10(Mathf.Abs(n)) / 3;
