@@ -93,7 +93,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4494405998654029397, guid: 143883845fcd84848afa8713e950b6d4, type: 3}
       propertyPath: m_Name
-      value: AoE Tower
+      value: Item AoE Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494405998654029398, guid: 143883845fcd84848afa8713e950b6d4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e078fcf14da9b247a0682c76efdc117, type: 3}
+    - target: {fileID: 4494405998654029398, guid: 143883845fcd84848afa8713e950b6d4, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4494405998654029399, guid: 143883845fcd84848afa8713e950b6d4, type: 3}
       propertyPath: loot

@@ -57,6 +57,17 @@ public enum EColorNames
     Violet = 7
 }
 
+public enum ELootBoxLevel
+{
+    none = -1,
+    free = 0,
+    normal = 1,
+    silver = 2,
+    gold = 3,
+    diamond = 4,
+    Aether = 5
+}
+
 public static class C
 {
     private static Hashtable ColorValues = new Hashtable

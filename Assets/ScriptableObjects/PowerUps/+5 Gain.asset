@@ -17,11 +17,13 @@ MonoBehaviour:
   baseColor: {r: 1, g: 1, b: 1, a: 1}
   ArtworkImage: {fileID: 21300000, guid: 0e078fcf14da9b247a0682c76efdc117, type: 3}
   Rarity: 0
-  DropChanceWithinRarity: 0.3
+  DropChanceWithinRarity: 66
   StackLimit: 12
+  minSpawnProbability: 0
+  maxSpawnProbability: 34.869564
   stats:
   - Harvest +5
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 1974298817014877654, guid: 3403751241c828048ae6c97c4016dc22, type: 3}
   ChangeAmount: 5
   effectTarget: 0
   coolDowninSec: 0

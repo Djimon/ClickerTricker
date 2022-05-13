@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2120198216547158572, guid: 59baef9e88b697840ba130c1b999d4dc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: aa8b98acad5d67042a4e417f44c9d4d7, type: 3}
     - target: {fileID: 2120198216547158573, guid: 59baef9e88b697840ba130c1b999d4dc, type: 3}
       propertyPath: loot
       value: 
@@ -97,7 +101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2120198216547158575, guid: 59baef9e88b697840ba130c1b999d4dc, type: 3}
       propertyPath: m_Name
-      value: +10 Gain
+      value: Item +10 Gain
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59baef9e88b697840ba130c1b999d4dc, type: 3}

@@ -17,8 +17,10 @@ MonoBehaviour:
   baseColor: {r: 1, g: 1, b: 1, a: 1}
   ArtworkImage: {fileID: 21300000, guid: 0e078fcf14da9b247a0682c76efdc117, type: 3}
   Rarity: 6
-  DropChanceWithinRarity: 0.1
+  DropChanceWithinRarity: 5
   StackLimit: 3
+  minSpawnProbability: 0
+  maxSpawnProbability: 0
   stats:
   - Harvest +50
   itemPrefab: {fileID: 4494405998654029397, guid: 143883845fcd84848afa8713e950b6d4, type: 3}

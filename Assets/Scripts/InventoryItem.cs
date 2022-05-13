@@ -42,6 +42,8 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
         Debug.Log(loot.LootName + "|" + loot.Description + "|" + loot.Rarity.ToString()+ "|"+ stats);
 
+
+        //TODO: Hover-text austuaschen zu Cards
         hoverScript.Initialize(loot.LootName, loot.Description, loot.Rarity, loot.stats);
         hoverText.SetActive(false);
     }

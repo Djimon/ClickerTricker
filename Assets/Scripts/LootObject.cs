@@ -11,9 +11,12 @@ public abstract class LootObject : ScriptableObject
     public Color baseColor = Color.white;
     public Sprite ArtworkImage;
     public ERarity Rarity = ERarity.Common;
-    [Range(0, 1)]
-    public float DropChanceWithinRarity = 0.01f;
+    [Range(1, 100)]
+    public int DropChanceWithinRarity =10;
     public int StackLimit = 10;
+
+    public float minSpawnProbability = 0;
+    public float maxSpawnProbability = 0;
 
     public List<string> stats;
 

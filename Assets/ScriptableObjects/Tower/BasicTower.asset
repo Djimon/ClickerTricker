@@ -17,8 +17,10 @@ MonoBehaviour:
   baseColor: {r: 1, g: 1, b: 1, a: 1}
   ArtworkImage: {fileID: 21300000, guid: aa8b98acad5d67042a4e417f44c9d4d7, type: 3}
   Rarity: 3
-  DropChanceWithinRarity: 0.33
+  DropChanceWithinRarity: 40
   StackLimit: 3
+  minSpawnProbability: 61.95652
+  maxSpawnProbability: 82.69565
   stats:
   - 'Damage: 5'
   - 'Shoot Frequency: 1/s'

@@ -23,9 +23,13 @@ PrefabInstance:
       propertyPath: StatsPrefab
       value: 
       objectReference: {fileID: 2076834302152774088, guid: 86553c9a60f1f784b8e96bd316404d12, type: 3}
+    - target: {fileID: 5931556268471710505, guid: d264af833dbbb9143ace7d1ea86dc09f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: aa8b98acad5d67042a4e417f44c9d4d7, type: 3}
     - target: {fileID: 5931556268471710506, guid: d264af833dbbb9143ace7d1ea86dc09f, type: 3}
       propertyPath: m_Name
-      value: InventoryItem
+      value: Item +50 Gain
       objectReference: {fileID: 0}
     - target: {fileID: 5931556268471710507, guid: d264af833dbbb9143ace7d1ea86dc09f, type: 3}
       propertyPath: m_Pivot.x

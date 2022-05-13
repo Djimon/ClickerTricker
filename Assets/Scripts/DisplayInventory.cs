@@ -69,14 +69,14 @@ public class DisplayInventory : MonoBehaviour
     {
         var x = x_Start + (X_Space_between_Item * (i % Col_Count));
         var y = y_Start + (-Y_Space_between_Item * (i / Col_Count));
-        Debug.Log("X|Y: " + x + " | " + y);
+        //Debug.Log("X|Y: " + x + " | " + y);
         return new Vector3(x,y, 0f);
         
     }
 
     private void OnApplicationQuit()
     {
-        //Inventory.Container.Clear();
+        Inventory.Container.Clear();
     }
 }
 

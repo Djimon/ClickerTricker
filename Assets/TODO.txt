@@ -1,0 +1,4 @@
+
+-Hover.Texte durch Cards ersetzen
+-beim lootboxen zuerst Vorschau-Inventors, dann nach klick ins echte Inventory
+-Lootboxen nur kaufbar, wenn nötige Ressource vorhanden

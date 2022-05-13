@@ -17,13 +17,16 @@ MonoBehaviour:
   baseColor: {r: 1, g: 1, b: 1, a: 1}
   ArtworkImage: {fileID: 21300000, guid: aa8b98acad5d67042a4e417f44c9d4d7, type: 3}
   Rarity: 4
-  DropChanceWithinRarity: 0.33
+  DropChanceWithinRarity: 30
   StackLimit: 3
+  minSpawnProbability: 83.69565
+  maxSpawnProbability: 98.99999
   stats:
   - 'Damage: 0'
   - 'Shoot Frequency: 0.5/s'
   - 'Range: 3'
   - Slows Enemy
+  itemPrefab: {fileID: 4554722054486906541, guid: b41fe3b15fca7dc4a83c779b49759dc4, type: 3}
   basePower: 1
   TowerPrefab: {fileID: 0}
   TowerType: 0

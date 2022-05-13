@@ -22,6 +22,7 @@ public class InventoryObject : ScriptableObject
                 if(Container[i].istackAmount < Container[i].loot.StackLimit)
                 {
                     Container[i].AddAmount(stack);
+                    Debug.Log("Added "+ stack+ " "+_loot.name + " to inventory");
                     hasLoot = true;
                     return true;
                 }
@@ -44,6 +45,7 @@ public class InventoryObject : ScriptableObject
             //else
             {
                 Container.Add(new InventorySlot(_loot, stack));
+                Debug.Log("Added " + stack + " "+ _loot.name + " to inventory");
                 return true;
             }   
         }
