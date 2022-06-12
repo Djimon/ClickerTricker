@@ -8,16 +8,19 @@ TagManager:
   - Place
   - Ground
   - Ghostblock
+  - Path
+  - Towerplace
+  - CantPlace
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Tower
   - Water
   - UI
   - UI-Hover
-  - 
-  - 
+  - TowerObject
+  - Enemy
   - 
   - 
   - 

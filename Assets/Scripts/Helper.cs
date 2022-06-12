@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+public enum ETargetType
+{
+    First,
+    Last,
+    Close
+}
 public enum ELootType
 {
     PowerUp,

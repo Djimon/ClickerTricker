@@ -1,4 +1,7 @@
 
+-weiter mit tower: https://www.youtube.com/watch?v=uFV7RstyS4g&list=PLEvnA6UOOVbnOcpQFcW9eFCE1KQ6cdyVI&index=7
+
 -Hover.Texte durch Cards ersetzen
 -beim lootboxen zuerst Vorschau-Inventors, dann nach klick ins echte Inventory
 -Lootboxen nur kaufbar, wenn nötige Ressource vorhanden
+
